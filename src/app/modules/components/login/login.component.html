@@ -1,1 +1,30 @@
-<p>login works!</p>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="wrapper fadeInDown">
+        <h1 class="font-weight-bold">OK-care</h1>
+        <div id="formContent">
+          <!-- Tabs Titles -->
+      
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="https://png.pngtree.com/png-clipart/20190614/original/pngtree-vector-hospital-icon-png-image_3782837.jpg" id="icon" alt="User Icon" />
+          </div>
+      
+          <!-- Login Form -->
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <input ngModel #email="ngModel" name="email" type="email" class="form-control fadeIn second mt-2" placeholder="E-Mail">
+            <input ngModel #password="ngModel" name="password" type="password" class="form-control fadeIn third mt-3"placeholder="password">
+            <input type="submit" class="fadeIn fourth mt-3" value="Log In">
+          </form>
+
+          
+          
+          <div class="row" *ngIf="authError">
+              <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+          </div>
+
+          <div id="formFooter">
+                <a class="underlineHover" href="/register">Registreren</a>
+          </div>
+        </div>
+        
+</div>
