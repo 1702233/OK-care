@@ -1,0 +1,71 @@
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+<div class="container">
+
+<hr>
+
+
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card">
+<header class="card-header">
+	<a href="/login" class="float-right btn btn-outline-primary mt-1">Inloggen</a>
+	<h4 class="card-title mt-2">Registreren</h4>
+</header>
+<article class="card-body">
+<form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
+	<div class="form-row">
+		<div class="col form-group">
+      <label>Voornaam </label>
+        <input ngModel #firstname="ngModel" name="firstName" type="text" class="form-control" id="firstName">
+		</div> <!-- form-group end.// -->
+		<div class="col form-group">
+			<label>Achternaam</label>
+      <input ngModel #lastname="ngModel" name="lastName" type="text" class="form-control" id="lastName" value="">
+		</div> <!-- form-group end.// -->
+	</div> <!-- form-row end.// -->
+	<div class="form-group">
+		<label>Email</label>
+    <input ngModel #email="ngModel" name="email" type="email" class="form-control">
+		<small class="form-text text-muted">We delen uw email nooit me andere partijen.</small>
+	</div> <!-- form-group end.// -->
+
+	<div class="form-row">
+		<div class="form-group col-md-6">
+		  <label>Stad</label>
+		  <input ngModel #stad="ngModel" type="text" class="form-control" name="stad" id="stad"> 
+		</div> <!-- form-group end.// -->
+		<div class="form-group col-md-6">
+        <label>Postcode</label>
+        <input ngModel #postcode="ngModel" type="text" class="form-control" name="postcode" id="postcode"> 
+		</div> <!-- form-group end.// -->
+	</div> <!-- form-row.// -->
+	<div class="form-group">
+		<label>Wachtwoord</label>
+    <input ngModel #password="ngModel" name="password" type="password" class="form-control">
+	</div> <!-- form-group end.// -->  
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" type="submit">Bevestigen</button>
+    </div> <!-- form-group// -->    
+    <div class="row" *ngIf="authError">
+        <div class="col-12 alert alert-danger">
+          {{ authError?.message }}
+        </div>
+    </div> 
+    <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+</form>
+</article> <!-- card-body end .// -->
+<div class="border-top card-body text-center">Heb je al een account? <a href="/login">Inloggen</a></div>
+</div> <!-- card.// -->
+</div> <!-- col.//-->
+
+</div> <!-- row.//-->
+
+
+</div> 
+<!--container end.//-->
+
+<br><br>
