@@ -1,1 +1,19 @@
-<p>menu works!</p>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <a id="title" class="navbar-brand">OK-care</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/home" routerLinkActive="active">Home<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/operaties" routerLinkActive="active">Operaties<span
+                        class="sr-only">(current)</span></a>
+            </li>
+
+            <!-- <li class="nav-item">
+          <a *ngIf="canActivate()" class="nav-link" routerLink="/booking-overview" routerLinkActive="active">Boekingsoverzicht<span class="sr-only">(current)</span></a>
+        </li> -->
+        </ul>
+    </div>
+</nav>
