@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+      <th>Type</th>
+      <th>Begintijd</th>
+      <th>Eindtijd</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let operatie of list">
+        <td (click)="onEdit(operatie)">{{operatie.type}}</td>
+        <td (click)="onEdit(operatie)">{{operatie.begintijd}}</td>
+        <td (click)="onEdit(operatie)">{{operatie.eindtijd}}</td>
+        <td><a class="btn text-danger" (click)="onDelete(operatie.id)"><i class="fa fa-trash"></i></a></td>
+      </tr>
+    </tbody>
+  </table>

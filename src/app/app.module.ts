@@ -2,18 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+// services
+import { OperatieService } from './core/services/operatieservice.service'
 // components
 import { LoginComponent } from './modules/components/login/login.component';
 import { MenuComponent } from './core/menu/menu.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { RegisterComponent } from './modules/components/register/register.component';
 import { HomeComponent } from './modules/components/home/home.component';
+import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
+import { OperatieLijstComponent } from './modules/components/operatie-lijst/operatie-lijst.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,9 @@ import { HomeComponent } from './modules/components/home/home.component';
     MenuComponent,
     FooterComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AddOperatieComponent,
+    OperatieLijstComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +38,11 @@ import { HomeComponent } from './modules/components/home/home.component';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [OperatieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
