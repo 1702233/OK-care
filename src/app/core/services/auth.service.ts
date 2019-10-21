@@ -104,4 +104,25 @@ export class AuthService {
       }
     });
   }
+
+  isLoggedIn(): boolean{
+    return this.afAuth.authState !== null;
+  }
+
+  accessOnlyUser(email){
+    this.db.collection("Users").doc(email).valueChanges().subscribe(val => {
+      if(val['role'] != 'zorgprofessional'){
+        this.router.navigate(['login'])
+      }
+    });
+  }
+
+  accessOnlyAdmin(email){
+    this.db.collection("Users").doc(email).valueChanges().subscribe(val => {
+      if(val['role'] != 'beheerder'){
+        this.router.navigate(['login'])
+      }
+    });
+  }
+
 }
