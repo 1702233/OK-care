@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 
-import { CalendarModule } from 'angular-calendar';
-import { SchedulerModule } from 'angular-calendar-scheduler';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +12,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+// scheduler
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 // services
 import { OperatieService } from './core/services/operatieservice.service'
 // components
@@ -47,11 +48,13 @@ import { ScheduleComponent } from './modules/components/schedule/schedule.compon
     AngularFirestoreModule,
     AngularFireAuthModule,
     ToastrModule.forRoot(),
-    CalendarModule.forRoot(),
-    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
     BrowserAnimationsModule,
+    ScheduleModule, RecurrenceEditorModule,
   ],
-  providers: [OperatieService],
+  providers: [
+    OperatieService,
+    DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
