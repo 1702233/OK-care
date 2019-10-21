@@ -3,25 +3,38 @@
 <div class="row">
   <div class="col-md-5">
     <h1 class="display-4">Operatie Toevoegen</h1>
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
-  <div class="form-group">
-    <input name="type" #type="ngModel" [(ngModel)]="service.formData.type" class="form-control" placeholder="Type" required>
-    <div *ngIf="type.invalid && type.touched" class="validation-error">This field is required.</div>
+    <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+      <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+      <div class="form-group">
+        <input name="type" #type="ngModel" [(ngModel)]="service.formData.type" class="form-control" placeholder="Type"
+          required>
+        <div *ngIf="type.invalid && type.touched" class="validation-error">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <input type="date" name="datum" #datum="ngModel" [(ngModel)]="service.formData.datum" class="form-control"
+          placeholder="datum" required>
+        <div *ngIf="datum.invalid && datum.touched" class="validation-error">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <input name="begintijd" #begintijd="ngModel" [(ngModel)]="service.formData.begintijd" class="form-control"
+          placeholder="Begintijd" required>
+        <div *ngIf="begintijd.invalid && begintijd.touched" class="validation-error">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <input name="eindtijd" #eindtijd="ngModel" [(ngModel)]="service.formData.eindtijd" class="form-control"
+          placeholder="Eindtijd" required>
+        <div *ngIf="eindtijd.invalid && eindtijd.touched" class="validation-error">This field is required.</div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <input name="begintijd" #begintijd="ngModel" [(ngModel)]="service.formData.begintijd" class="form-control" placeholder="Begintijd" required>
-    <div *ngIf="begintijd.invalid && begintijd.touched" class="validation-error">This field is required.</div>
-  </div>
-  <div class="form-group">
-    <input name="eindtijd" #eindtijd="ngModel" [(ngModel)]="service.formData.eindtijd" class="form-control" placeholder="Eindtijd" required>
-    <div *ngIf="eindtijd.invalid && eindtijd.touched" class="validation-error">This field is required.</div>
-  </div>
-  <div class="form-group">
-    <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>
-  </div>
-</form>
-  </div>
+
   <div class="col-md-7">
     <app-operatie-lijst></app-operatie-lijst>
   </div>

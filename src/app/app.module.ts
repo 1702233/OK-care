@@ -20,6 +20,7 @@ import { RegisterComponent } from './modules/components/register/register.compon
 import { HomeComponent } from './modules/components/home/home.component';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
 import { OperatieLijstComponent } from './modules/components/operatie-lijst/operatie-lijst.component';
+import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { OperatieLijstComponent } from './modules/components/operatie-lijst/oper
     RegisterComponent,
     HomeComponent,
     AddOperatieComponent,
-    OperatieLijstComponent
+    OperatieLijstComponent,
+    InschrijvenComponent
   ],
   imports: [
     BrowserModule,
