@@ -5,6 +5,7 @@ import { RegisterComponent } from './modules/components/register/register.compon
 import { HomeComponent } from './modules/components/home/home.component';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
+import { ScheduleComponent } from './modules/components/schedule/schedule.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'operaties', component: AddOperatieComponent},
   { path: 'inschrijven', component: InschrijvenComponent},
+  { path: 'schedule', component: ScheduleComponent},
   {
     path: '**',
     redirectTo: 'login',

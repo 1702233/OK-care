@@ -25,6 +25,7 @@ export class AddOperatieComponent implements OnInit {
     this.service.formData = {
       id: null,
       type: '',
+      datum: '',
       begintijd: '',
       eindtijd: '',
     }

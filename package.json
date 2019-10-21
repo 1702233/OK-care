@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
+    "angular-calendar-scheduler": "^1.0.12",
+    "date-fns": "^2.5.1",
     "firebase": "^7.2.0",
     "ngx-toastr": "^11.1.2",
     "rxjs": "~6.4.0",

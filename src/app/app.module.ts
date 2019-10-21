@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+
+import { CalendarModule } from 'angular-calendar';
+import { SchedulerModule } from 'angular-calendar-scheduler';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +24,7 @@ import { HomeComponent } from './modules/components/home/home.component';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
 import { OperatieLijstComponent } from './modules/components/operatie-lijst/operatie-lijst.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
+import { ScheduleComponent } from './modules/components/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     HomeComponent,
     AddOperatieComponent,
     OperatieLijstComponent,
-    InschrijvenComponent
+    InschrijvenComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,8 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     AngularFirestoreModule,
     AngularFireAuthModule,
     ToastrModule.forRoot(),
+    CalendarModule.forRoot(),
+    SchedulerModule.forRoot({ locale: 'en', headerDateFormat: 'daysRange' }),
     BrowserAnimationsModule,
   ],
   providers: [OperatieService],
