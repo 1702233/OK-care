@@ -1,8 +1,13 @@
 <app-menu></app-menu>
 <div>
-    <h3>Naam: {{ mijnUser.firstname +" "+ mijnUser.lastname }}</h3>
-    <h3>Email: {{ mijnUser.email }}</h3>
-    <h3>Stad: {{ mijnUser.stad }}</h3>
-    <h3>Postcode: {{ mijnUser.postcode }}</h3>
-    <h3>Rol: {{mijnUser.role}}</h3>
+    <div>
+        <h1 class="font-weight-bold">Mijn Profiel</h1>
+    </div>
+    <div>
+        <h5>Naam: {{ mijnUser.firstname +" "+ mijnUser.lastname }}</h5>
+        <h5>Email: {{ mijnUser.email }}</h5>
+        <h5>Stad: {{ mijnUser.stad }}</h5>
+        <h5>Postcode: {{ mijnUser.postcode }}</h5>
+        <h5>Rol: {{mijnUser.role}}</h5>
+    </div>
 </div>
