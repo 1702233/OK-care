@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Registration } from '../../shared/models/registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
   newUser: any;
   private eventAuthError = new BehaviorSubject<string>('');
   eventAuthError$ = this.eventAuthError.asObservable();
+  registration : Observable<Registration>;
 
   constructor(public  afAuth: AngularFireAuth, private db: AngularFirestore, public  router: Router) {
     this.afAuth.authState.subscribe(user => {
@@ -104,4 +106,30 @@ export class AuthService {
       }
     });
   }
+
+  isLoggedIn(): boolean{
+    return this.afAuth.authState !== null;
+  }
+
+  accessOnlyUser(email){
+    this.db.collection("Users").doc(email).valueChanges().subscribe(val => {
+      if(val['role'] != 'zorgprofessional'){
+        this.router.navigate(['home'])
+      }
+    });
+  }
+
+  accessOnlyAdmin(email){
+    this.db.collection("Users").doc(email).valueChanges().subscribe(val => {
+      if(val['role'] != 'beheerder'){
+        this.router.navigate(['home'])
+      }
+    });
+  }
+
+  checkUserRole(email){
+    this.registration = this.db.collection("Users").doc(email).valueChanges();
+    return this.registration;
+  }
+
 }
