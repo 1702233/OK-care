@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +43,7 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     AngularFirestoreModule,
     AngularFireAuthModule,
     ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
   ],
   providers: [OperatieService],

@@ -12,22 +12,38 @@
       </div>
 
       <div class="form-group">
+        <input type="number" name="aantalmedewerkers" #aantalmedewerkers="ngModel"
+          [(ngModel)]="service.formData.aantalmedewerkers" class="form-control" placeholder="aantalmedewerkers" min="1"
+          required>
+        <div *ngIf="aantalmedewerkers.invalid && aantalmedewerkers.touched" class="validation-error">This field is
+          required.</div>
+      </div>
+
+      <div class="form-group">
         <input type="date" name="datum" #datum="ngModel" [(ngModel)]="service.formData.datum" class="form-control"
           placeholder="datum" required>
         <div *ngIf="datum.invalid && datum.touched" class="validation-error">This field is required.</div>
       </div>
 
       <div class="form-group">
-        <input name="begintijd" #begintijd="ngModel" [(ngModel)]="service.formData.begintijd" class="form-control"
-          placeholder="Begintijd" required>
+        <input type="time" name="begintijd" #begintijd="ngModel" [(ngModel)]="service.formData.begintijd"
+          class="form-control" placeholder="Begintijd" required>
         <div *ngIf="begintijd.invalid && begintijd.touched" class="validation-error">This field is required.</div>
       </div>
 
       <div class="form-group">
-        <input name="eindtijd" #eindtijd="ngModel" [(ngModel)]="service.formData.eindtijd" class="form-control"
-          placeholder="Eindtijd" required>
+        <input type="time" name="eindtijd" #eindtijd="ngModel" [(ngModel)]="service.formData.eindtijd"
+          class="form-control" placeholder="Eindtijd" required>
         <div *ngIf="eindtijd.invalid && eindtijd.touched" class="validation-error">This field is required.</div>
       </div>
+
+      
+      <!-- <div class="form-group">
+        <ng-multiselect-dropdown name="competenties" [placeholder]="'custom placeholder'" [data]="dropdownList"
+          [(ngModel)]="competenties" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
+      </div> -->
 
       <div class="form-group">
         <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>
