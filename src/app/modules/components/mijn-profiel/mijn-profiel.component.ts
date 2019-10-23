@@ -15,7 +15,6 @@ import { debug } from 'util';
 export class MijnProfielComponent implements OnInit {
   user: firebase.User;
   mijnUser: User;
-  users: User[];
 
   constructor(private auth: AuthService, private router: Router, private userService: UserService) { }
 
@@ -26,20 +25,10 @@ export class MijnProfielComponent implements OnInit {
       if (user == null) {
         this.router.navigate(['login']);
       }
+      this.userService.getUser(user.email).subscribe( mijnUser => {
+        this.mijnUser = mijnUser as User;
+      })
     });
-
-    this.userService.getUsers().subscribe(users => {
-      this.users = users;
-      this.getUser();
-    });
-  }
-
-  getUser() {
-    for (const user of this.users) {
-      if (user.email === this.user.email) {
-        return this.mijnUser = user;
-      }
-    }
   }
 
 

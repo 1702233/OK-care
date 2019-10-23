@@ -26,7 +26,8 @@ export class UserService {
   }
 
   getUser(email: string) {
-    return this.userDoc = this.afs.doc(`Users/${email}`);
+    return this.afs.collection("Users").doc(email).valueChanges();
+
   }
 
   getUsers() {
