@@ -1,13 +1,37 @@
 <app-menu></app-menu>
-<div>
-    <div>
-        <h1 class="font-weight-bold">Mijn Profiel</h1>
-    </div>
-    <div>
-        <h5>Naam: {{ mijnUser.firstname +" "+ mijnUser.lastname }}</h5>
-        <h5>Email: {{ mijnUser.email }}</h5>
-        <h5>Stad: {{ mijnUser.stad }}</h5>
-        <h5>Postcode: {{ mijnUser.postcode }}</h5>
-        <h5>Rol: {{mijnUser.role}}</h5>
+
+
+
+<div class="row py-5 px-4">
+    
+    <div class="col-xl-4 col-md-6 col-sm-10 mx-auto">
+        <h1 class="text-center" >Mijn Profiel</h1>
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 bg-dark">
+                <div class="media align-items-end profile-header">
+                    <div class="profile mr-3 mt-3"><img src="http://icons.iconarchive.com/icons/icons8/android/512/Users-User-icon.png" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0">{{ mijnUser.firstname +" "+ mijnUser.lastname | titlecase}}</h4>
+                        <p class="small mb-4"> <i class=" mr-2"></i></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+               
+            </div>
+
+            <div class="py-4 px-4">
+                <div>
+                    <h5>Email: {{ mijnUser.email }}</h5>
+                    <h5>Stad: {{ mijnUser.stad | titlecase }}</h5>
+                    <h5>Postcode: {{ mijnUser.postcode }}</h5>
+                    <h5>Adres: {{ mijnUser.straat + " " +  mijnUser.huisnummer | titlecase }}</h5>
+                    <h5>Rol: {{mijnUser.role | titlecase }}</h5>
+                </div>
+            </div>
+        </div><!-- End profile widget -->
+
     </div>
 </div>

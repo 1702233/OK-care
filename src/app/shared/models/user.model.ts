@@ -7,4 +7,6 @@ export interface User {
     stad?: string;
     status?: string;
     id?: string;
+    huisnummer?: number;
+    straat?: string;
 }

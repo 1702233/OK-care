@@ -16,8 +16,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     // finds the user that is currently signed in.
-    
-
     this.auth.eventAuthError$.subscribe( data => {
       this.authError = '';
       this.authError = data;
