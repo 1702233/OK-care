@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +20,7 @@ import { RegisterComponent } from './modules/components/register/register.compon
 import { HomeComponent } from './modules/components/home/home.component';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
 import { OperatieLijstComponent } from './modules/components/operatie-lijst/operatie-lijst.component';
+import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 
 @NgModule({
@@ -33,7 +33,8 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     HomeComponent,
     AddOperatieComponent,
     OperatieLijstComponent,
-    InschrijvenComponent
+    MijnProfielComponent,
+    InschrijvenComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,6 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     AngularFirestoreModule,
     AngularFireAuthModule,
     ToastrModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
   ],
   providers: [OperatieService],

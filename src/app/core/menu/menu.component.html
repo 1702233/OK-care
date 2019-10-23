@@ -1,23 +1,34 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-    <a id="title" class="navbar-brand">OK-care</a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/home" routerLinkActive="active">Home<span
-                        class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
-                <a class="nav-link" routerLink="/operaties" routerLinkActive="active">Operaties<span
-                        class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/inschrijven" routerLinkActive="active">Inschrijven<span
-                        class="sr-only">(current)</span></a>
-            </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">OK-Care</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
+        <a class="nav-link" routerLink="/operaties" routerLinkActive="active">Operaties<span
+            class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/inschrijven" routerLinkActive="active">Inschrijven<span
+            class="sr-only">(current)</span></a>
+      </li>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="mijnProfiel" routerLinkActive="active">Mijn Profiel<span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" href="" routerLinkActive="active">Log uit<span
+            class="sr-only">(current)</span></a>
+      </li>
 
-            <!-- <li class="nav-item">
+      <!-- <li class="nav-item">
           <a *ngIf="canActivate()" class="nav-link" routerLink="/booking-overview" routerLinkActive="active">Boekingsoverzicht<span class="sr-only">(current)</span></a>
         </li> -->
-        </ul>
-    </div>
+    </ul>
+  </div>
 </nav>

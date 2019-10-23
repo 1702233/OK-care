@@ -5,6 +5,7 @@ import { RegisterComponent } from './modules/components/register/register.compon
 import { HomeComponent } from './modules/components/home/home.component';
 import { AuthGuard } from './core/services/auth-guard.service';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
+import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'operaties', component: AddOperatieComponent, canActivate: [AuthGuard] },
+  { path: 'mijnProfiel', component: MijnProfielComponent },
   { path: 'inschrijven', component: InschrijvenComponent},
   {
     path: '**',
