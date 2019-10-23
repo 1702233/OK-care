@@ -26,7 +26,7 @@ export class UserService {
   }
 
   getUser(email: string) {
-    return this.afs.doc('Users/' + email).snapshotChanges();
+    return this.afs.collection("Users").doc(email).valueChanges();
 
   }
 

@@ -22,7 +22,9 @@ export class HomeComponent implements OnInit {
       if (user == null) {
         this.router.navigate(['login']);
       }
-      this.mijnUser = this.userService.getUser(user.email) as User;
+      this.userService.getUser(user.email).subscribe( mijnUser => {
+        this.mijnUser = mijnUser as User;
+      })
     });
   }
 
