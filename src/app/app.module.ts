@@ -28,6 +28,7 @@ import { OperatieLijstComponent } from './modules/components/operatie-lijst/oper
 import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 import { ScheduleComponent } from './modules/components/schedule/schedule.component';
+import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ScheduleComponent } from './modules/components/schedule/schedule.compon
     OperatieLijstComponent,
     MijnProfielComponent,
     InschrijvenComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    InschrijfAcceptanceComponent
   ],
   imports: [
     BrowserModule,
