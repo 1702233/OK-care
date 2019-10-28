@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'mijnProfiel', component: MijnProfielComponent },
   { path: 'inschrijven', component: InschrijvenComponent},
   { path: 'schedule', component: ScheduleComponent},
-  { path: 'appinschijf', component: InschrijfAcceptanceComponent},
+  { path: 'operatieacceptance', component: InschrijfAcceptanceComponent},
   {
     path: '**',
     redirectTo: 'login',
