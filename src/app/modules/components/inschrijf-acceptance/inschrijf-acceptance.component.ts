@@ -6,6 +6,7 @@ import { OperatieService } from '../../../core/services/operatieservice.service'
 import { Operatie } from '../../../shared/models/operatie.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-inschrijf-acceptance',
@@ -17,12 +18,14 @@ export class InschrijfAcceptanceComponent implements OnInit {
   user: firebase.User;
   list: Operatie[];
   inschrijflist
+  laatsteOperatie
 
   constructor(private service: OperatieService,
     private firestore: AngularFirestore,
     private toastr:ToastrService,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private ref: ChangeDetectorRef) { }
     
 
   ngOnInit() {
@@ -60,6 +63,7 @@ export class InschrijfAcceptanceComponent implements OnInit {
   getIngeschreven(id: string) {
     console.log('getIngeschreven functie')
     console.log(this.inschrijflist)
+    this.laatsteOperatie = id;
     this.service.getIngeschreven(id).subscribe(actionArray => {
       this.inschrijflist = actionArray.map(item => {
         return {
@@ -68,8 +72,16 @@ export class InschrijfAcceptanceComponent implements OnInit {
         }
       })
     });
+    console.log(this.inschrijflist)
+    this.ref.detectChanges()
   }
 
-  onInschrijven
+  onAcceptInschrijven(id : string) {
+    this.service.acceptOperatieInschrijving(this.laatsteOperatie, id);
+  }
+
+  onDenyInschrijven(id : string ) {
+    this.service.denyOperatieInschrijving(this.laatsteOperatie, id);
+  }
 
 }

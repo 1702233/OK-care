@@ -11,11 +11,11 @@
                       <th>Eindtijd</th>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let operatie of list">
-                        <td (click)="getIngeschreven(operatie.id)">{{operatie.type}}</td>
-                        <td (click)="getIngeschreven(operatie.id)">{{operatie.datum}}</td>
-                        <td (click)="getIngeschreven(operatie.id)">{{operatie.begintijd}}</td>
-                        <td (click)="getIngeschreven(operatie.id)">{{operatie.eindtijd}}</td>
+                      <tr *ngFor="let operatie of list" (click)="getIngeschreven(operatie.id)" [ngClass] = "{'highlight' : operatie.id == laatsteOperatie}">
+                        <td>{{operatie.type}}</td>
+                        <td>{{operatie.datum}}</td>
+                        <td>{{operatie.begintijd}}</td>
+                        <td>{{operatie.eindtijd}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -30,11 +30,11 @@
                 <th>afkeuren</th>
             </thead>
             <tbody>
-                <tr *ngFor="let zorgp of inschrijflijst">
+                <tr *ngFor="let zorgp of inschrijflist">
                     <td>{{zorgp.id}}</td>
                     <td>{{zorgp.displayName}}</td>
                     <td><a  class="btn" (click)="onAcceptInschrijven(zorgp.id)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-                    <td></td>
+                    <td><a  class="btn" (click)="onDenyInschrijven(zorgp.id)"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 
                 </tr>
             </tbody>
