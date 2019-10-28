@@ -8,6 +8,8 @@ import { AddOperatieComponent } from './modules/components/add-operatie/add-oper
 import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 import { ScheduleComponent } from './modules/components/schedule/schedule.component';
+import { CompetentieToevoegenComponent } from './modules/components/competentie-toevoegen/competentie-toevoegen.component';
+import { CompetentieBeoordelenComponent } from './modules/components/competentie-beoordelen/competentie-beoordelen.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'mijnProfiel', component: MijnProfielComponent },
   { path: 'inschrijven', component: InschrijvenComponent},
   { path: 'schedule', component: ScheduleComponent},
+  { path: 'competentieBeoordelen', component: CompetentieBeoordelenComponent},
+  { path: 'competentieToevoegen', component: CompetentieToevoegenComponent},
   {
     path: '**',
     redirectTo: 'login',

@@ -1,0 +1,18 @@
+<app-menu></app-menu>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Naam</th>
+                <th scope="col">File</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let competentie of competentieLijst">
+                <td>{{ competentie.naam }}</td>
+                <td>{{ competentie.file }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

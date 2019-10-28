@@ -3,8 +3,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { User } from '../../../shared/models/user.model';
-import { AngularFirestoreDocument } from '@angular/fire/firestore';
-import { debug } from 'util';
+
 
 
 @Component({
@@ -27,8 +26,11 @@ export class MijnProfielComponent implements OnInit {
       }
       this.userService.getUser(user.email).subscribe( mijnUser => {
         this.mijnUser = mijnUser as User;
-      })
+        console.log(this.mijnUser.competentie);
+      });
     });
+
+    
   }
 
 

@@ -1,3 +1,5 @@
+import { Competentie } from './competentie.model';
+
 export interface User {
     email?: string;
     firstname?: string;
@@ -9,4 +11,5 @@ export interface User {
     id?: string;
     huisnummer?: number;
     straat?: string;
+    competentie?: Array<Competentie>;
 }

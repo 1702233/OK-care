@@ -1,0 +1,13 @@
+<app-menu></app-menu>
+
+
+<form class="text-center">
+    <h1>Competentie Toevoegen</h1>
+    <div class="text-left ml-3">
+        <h5>Naam:</h5>
+        <input class="" type="text" #naam >
+        <h5>File:</h5>
+        <input class="" type="text" #file >
+        <button type="submit" class="btn btn-secondary ml-2" (click)="getCompetentie(naam.value , file.value)" >Toevoegen</button>
+    </div>
+</form>
