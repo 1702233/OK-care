@@ -13,9 +13,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 // scheduler
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!;
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 // services
-import { OperatieService } from './core/services/operatieservice.service'
+import { OperatieService } from './core/services/operatieservice.service';
 // components
 import { LoginComponent } from './modules/components/login/login.component';
 import { MenuComponent } from './core/menu/menu.component';
@@ -50,6 +51,7 @@ import { ScheduleComponent } from './modules/components/schedule/schedule.compon
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ScheduleModule, RecurrenceEditorModule,
+    FullCalendarModule, // for FullCalendar!
   ],
   providers: [
     OperatieService,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { EventInput } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-schedule',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit {
+  calendarPlugins = [dayGridPlugin]; // important!
+  calendarEvents: EventInput[] = [];
 
-    ngOnInit(): void {
-
-    }
+  ngOnInit(): void {
+    this.calendarEvents.push({ title: 'test', start: '2019-10-10'});
+  }
 
 }
