@@ -1,0 +1,43 @@
+<app-menu></app-menu>
+
+<div class="row">
+
+    <div class="col-md-5">
+            <table class="table table-hover">
+                    <thead>
+                      <th>Type</th>
+                      <th>Datum</th>
+                      <th>Begintijd</th>
+                      <th>Eindtijd</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let operatie of list">
+                        <td (click)="getIngeschreven(operatie.id)">{{operatie.type}}</td>
+                        <td (click)="getIngeschreven(operatie.id)">{{operatie.datum}}</td>
+                        <td (click)="getIngeschreven(operatie.id)">{{operatie.begintijd}}</td>
+                        <td (click)="getIngeschreven(operatie.id)">{{operatie.eindtijd}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+    </div>
+
+    <div class="col-md-7">
+        <table class="table table-hover">
+            <thead>
+                <th>email</th>
+                <th>naam</th>
+                <th>goedkeuren</th>
+                <th>afkeuren</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let zorgp of inschrijflijst">
+                    <td>{{zorgp.id}}</td>
+                    <td>{{zorgp.displayName}}</td>
+                    <td><a  class="btn" (click)="onAcceptInschrijven(zorgp.id)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -13,4 +13,18 @@ export class OperatieService {
   getOperaties() {
     return this.firestore.collection('operaties').snapshotChanges();
   }
+
+  getIngeschreven(id : string) {
+    return this.firestore.collection('operaties').doc(id).collection('ingeschreven').snapshotChanges();
+  }
+
+  acceptOperatieInschrijving(operatieid : string, zorgprofessionalid : string) {
+    // status veranderen.
+    this.firestore.collection('operaties').doc(operatieid).collection('ingeschreven').doc(zorgprofessionalid).update({ status: 'goedgekeurd' })
+  }
+
+  denyOperatieInschrijving(operatieid : string, zorgprofessionalid : string) {
+    // status veranderen.
+    this.firestore.collection('operaties').doc(operatieid).collection('ingeschreven').doc(zorgprofessionalid).update({ status: 'afgekeurd' })
+  }
 }
