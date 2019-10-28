@@ -7,6 +7,7 @@ import { AuthGuard } from './core/services/auth-guard.service';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
 import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
+import { ScheduleComponent } from './modules/components/schedule/schedule.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'operaties', component: AddOperatieComponent, canActivate: [AuthGuard] },
   { path: 'mijnProfiel', component: MijnProfielComponent },
   { path: 'inschrijven', component: InschrijvenComponent},
+  { path: 'schedule', component: ScheduleComponent},
   {
     path: '**',
     redirectTo: 'login',
