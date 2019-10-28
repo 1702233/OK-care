@@ -10,7 +10,6 @@ import { Registration } from '../../shared/models/registration.model';
 })
 export class MenuComponent implements OnInit {
   registration: Registration;
-
   user: firebase.User;
   constructor(private auth: AuthService, private router: Router) { }
 

@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,8 +12,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+// scheduler
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!;
+import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
 // services
-import { OperatieService } from './core/services/operatieservice.service'
+import { OperatieService } from './core/services/operatieservice.service';
 // components
 import { LoginComponent } from './modules/components/login/login.component';
 import { MenuComponent } from './core/menu/menu.component';
@@ -21,7 +25,10 @@ import { RegisterComponent } from './modules/components/register/register.compon
 import { HomeComponent } from './modules/components/home/home.component';
 import { AddOperatieComponent } from './modules/components/add-operatie/add-operatie.component';
 import { OperatieLijstComponent } from './modules/components/operatie-lijst/operatie-lijst.component';
+import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
+import { ScheduleComponent } from './modules/components/schedule/schedule.component';
+import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,10 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     HomeComponent,
     AddOperatieComponent,
     OperatieLijstComponent,
-    InschrijvenComponent
+    MijnProfielComponent,
+    InschrijvenComponent,
+    ScheduleComponent,
+    InschrijfAcceptanceComponent
   ],
   imports: [
     BrowserModule,
@@ -43,10 +53,14 @@ import { InschrijvenComponent } from './modules/components/inschrijven/inschrijv
     AngularFirestoreModule,
     AngularFireAuthModule,
     ToastrModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
+    ScheduleModule, RecurrenceEditorModule,
+    FullCalendarModule, // for FullCalendar!
   ],
-  providers: [OperatieService],
+  providers: [
+    OperatieService,
+    DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

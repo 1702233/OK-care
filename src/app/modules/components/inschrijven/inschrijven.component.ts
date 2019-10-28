@@ -40,12 +40,12 @@ export class InschrijvenComponent implements OnInit {
   onInschrijven(id: string) {
     if (confirm('Weet je zeker dat je je voor deze operatie wilt inschrijven?')) {
       this.firestore.collection('operaties').doc(id).collection('ingeschreven').doc(this.user.email).set({
-        displayName: this.user.displayName
+        displayName: this.user.displayName,
+        status: 'ingeschreven'
       });
       this.toastr.success('Success', 'Operatie Inschrijven');
       // this.firestore.collection('operaties').doc(id).update({ toevoegen : 'ok' });
     }
-    // TODO update google calendar.
 
   }
 }

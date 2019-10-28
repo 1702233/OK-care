@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   user: firebase.User;
+  mijnUser: User;
+  users: User[];
 
-  constructor( private auth: AuthService, private router: Router) { }
+  constructor( private auth: AuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.auth.getUserState().subscribe( user => {
@@ -18,6 +22,9 @@ export class HomeComponent implements OnInit {
       if (user == null) {
         this.router.navigate(['login']);
       }
+      this.userService.getUser(user.email).subscribe( mijnUser => {
+        this.mijnUser = mijnUser as User;
+      })
     });
   }
 

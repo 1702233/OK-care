@@ -1,3 +1,6 @@
+@import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
 /* You can add global styles to this file, and also import other style files */
 input.ng-touched.ng-invalid{
     border-color: #dc3545;
@@ -12,4 +15,9 @@ div.validation-error{
 
 table.table-hover tbody tr:hover{
     cursor: pointer;
+}
+
+table tr.highlight {
+    background-color: #4CAF50 !important;
+    color: #ffffff;
 }

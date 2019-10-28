@@ -37,7 +37,9 @@ export class AuthService {
       role: 'zorgprofessional',
       stad: this.newUser.stad,
       postcode: this.newUser.postcode,
-      status: 'disabled'
+      status: 'disabled',
+      straat: this.newUser.straat,
+      huisnummer: this.newUser.huisnummer
     });
   }
 
