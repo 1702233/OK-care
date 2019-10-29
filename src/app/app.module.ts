@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +10,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 // scheduler
 import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!;
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
@@ -53,6 +52,7 @@ import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acc
     AngularFirestoreModule,
     AngularFireAuthModule,
     ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
     ScheduleModule, RecurrenceEditorModule,
     FullCalendarModule, // for FullCalendar!
