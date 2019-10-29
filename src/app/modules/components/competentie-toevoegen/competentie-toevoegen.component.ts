@@ -28,6 +28,7 @@ export class CompetentieToevoegenComponent implements OnInit {
       if (user != null) {
         this.auth.accessOnlyUser(user.email);
       }
+
       this.userService.getUser(user.email).subscribe( mijnUser => {
         this.mijnUser = mijnUser as User;
         this.getCompetentieLijst();
@@ -43,13 +44,19 @@ export class CompetentieToevoegenComponent implements OnInit {
 
   getCompetentie(naam: string, file: string) {
     const status = 'ingeschreven';
-    this.competentie = {naam, file, status };
+    const email = this.user.email;
+    this.competentie = {naam, file, status, email  };
     this.addCompetentie();
     this.competentieToevoegen(this.user.email);
   }
 
   addCompetentie() {
     this.competentieLijst.push(this.competentie);
+  }
+
+  verwijderCompetentie(index: number) {
+    this.competentieLijst.splice(index, 1);
+    this.competentieToevoegen(this.user.email);
   }
 
   competentieToevoegen(email: string) {

@@ -26,6 +26,7 @@
     "@syncfusion/ej2-angular-schedule": "^17.3.17",
     "@syncfusion/ej2-material-theme": "~17.3.16",
     "angular-calendar-scheduler": "^1.0.12",
+    "angular-font-awesome": "^3.1.2",
     "date-fns": "^2.5.1",
     "firebase": "^7.2.0",
     "ng-multiselect-dropdown": "^0.2.6",

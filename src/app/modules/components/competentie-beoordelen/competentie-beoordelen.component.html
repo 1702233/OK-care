@@ -1,18 +1,28 @@
 <app-menu></app-menu>
 
-<div>
-    <table>
+<div *ngIf="competentieLijst?.length > 0; else noCompetenties">
+    <table class="table table-striped">
         <thead>
             <tr>
+                <th scope="col">Email</th>
                 <th scope="col">Naam</th>
                 <th scope="col">File</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let competentie of competentieLijst">
+            <tr *ngFor="let competentie of competentieLijst; let i = index" [attr.data-index]="i">
+                <td>{{ competentie.email }}</td>
                 <td>{{ competentie.naam }}</td>
                 <td>{{ competentie.file }}</td>
+                <td>{{ competentie.status }}</td>
+                <td> <button  class="btn btn-light" (click)="competentieAccepteren(i, user.email)">Accepteren</button> </td>
+                <td> <button  class="btn btn-light" (click)="competentieAfkeuren(i, user.email)">Afwijzen</button> </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<ng-template #noCompetenties>
+        <h5>Alle competenties zijn beoordeeld.</h5>
+</ng-template>
