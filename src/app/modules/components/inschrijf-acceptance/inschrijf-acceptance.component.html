@@ -1,0 +1,43 @@
+<app-menu></app-menu>
+
+<div class="row">
+
+    <div class="col-md-5">
+            <table class="table table-hover">
+                    <thead>
+                      <th>Type</th>
+                      <th>Datum</th>
+                      <th>Begintijd</th>
+                      <th>Eindtijd</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let operatie of list" (click)="getIngeschreven(operatie.id)" [ngClass] = "{'highlight' : operatie.id == laatsteOperatie}">
+                        <td>{{operatie.type}}</td>
+                        <td>{{operatie.datum}}</td>
+                        <td>{{operatie.begintijd}}</td>
+                        <td>{{operatie.eindtijd}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+    </div>
+
+    <div class="col-md-7">
+        <table class="table table-hover">
+            <thead>
+                <th>email</th>
+                <th>naam</th>
+                <th>goedkeuren</th>
+                <th>afkeuren</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let zorgp of inschrijflist">
+                    <td>{{zorgp.id}}</td>
+                    <td>{{zorgp.displayName}}</td>
+                    <td><a  class="btn" (click)="onAcceptInschrijven(zorgp.id)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+                    <td><a  class="btn" (click)="onDenyInschrijven(zorgp.id)"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

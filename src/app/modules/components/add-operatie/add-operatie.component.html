@@ -37,13 +37,13 @@
         <div *ngIf="eindtijd.invalid && eindtijd.touched" class="validation-error">This field is required.</div>
       </div>
 
-      
-      <!-- <div class="form-group">
-        <ng-multiselect-dropdown name="competenties" [placeholder]="'custom placeholder'" [data]="dropdownList"
-          [(ngModel)]="competenties" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+      <!-- toevoegen en fixen voor het aangeven voor competenties per operatie [(ngModel)]="competenties" -->
+      <div class="form-group">
+        <ng-multiselect-dropdown name="competenties" [data]="dropdownList"
+            [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
           (onSelectAll)="onSelectAll($event)">
         </ng-multiselect-dropdown>
-      </div> -->
+      </div>
 
       <div class="form-group">
         <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block btn-info">SUBMIT</button>

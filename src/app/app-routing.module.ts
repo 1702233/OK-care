@@ -8,6 +8,7 @@ import { AddOperatieComponent } from './modules/components/add-operatie/add-oper
 import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 import { ScheduleComponent } from './modules/components/schedule/schedule.component';
+import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'mijnProfiel', component: MijnProfielComponent },
   { path: 'inschrijven', component: InschrijvenComponent},
   { path: 'schedule', component: ScheduleComponent},
+  { path: 'operatieacceptance', component: InschrijfAcceptanceComponent},
   {
     path: '**',
     redirectTo: 'login',
