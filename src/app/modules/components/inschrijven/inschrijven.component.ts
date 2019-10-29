@@ -30,8 +30,24 @@ export class InschrijvenComponent implements OnInit {
           id: item.payload.doc.id,
           ...item.payload.doc.data()
         } as Operatie;
-      });
+      })
+      for (let i in this.list) {
+        let inschrijving;
+
+        this.service.getIngeschreven(this.list[i].id).subscribe(actionArray => {
+          inschrijving = actionArray.map(item => {
+            return {
+              id: item.payload.doc.id,  
+              ...item.payload.doc.data()
+            }
+          })
+          this.list[i].inschrijving = inschrijving;
+          console.log(this.list[i])
+        });
+      }
     });
+
+    //authenticatie
     this.auth.getUserState().subscribe( user => {
       this.user = user;
     });
@@ -47,5 +63,19 @@ export class InschrijvenComponent implements OnInit {
       // this.firestore.collection('operaties').doc(id).update({ toevoegen : 'ok' });
     }
 
+  }
+
+  log(op: Operatie) {
+    let inschrijvingen;
+    this.service.getIngeschreven(op.id).subscribe(actionArray => {
+      inschrijvingen = actionArray.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data()
+        }
+      })
+      console.log(op)
+      console.log(inschrijvingen);
+    });
   }
 }

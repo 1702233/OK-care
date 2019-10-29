@@ -6,14 +6,22 @@
         <th>Begintijd</th>
         <th>Eindtijd</th>
         <th>Inschrijven</th>
+        <th>test</th>
     </thead>
     <tbody>
-        <tr *ngFor="let operatie of list">
-            <td>{{operatie.type}}</td>
-            <td>{{operatie.datum}}</td>
-            <td>{{operatie.begintijd}}</td>
-            <td>{{operatie.eindtijd}}</td>
-            <td><a  class="btn" (click)="onInschrijven(operatie.id)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
-        </tr>
+        <ng-container *ngFor="let operatie of list">
+            <ng-container>
+                <tr>
+                    <td>{{operatie.type}}</td>
+                    <td>{{operatie.datum}}</td>
+                    <td>{{operatie.begintijd}}</td>
+                    <td>{{operatie.eindtijd}}</td>
+                    <td><a class="btn" (click)="onInschrijven(operatie.id)"><i class="fa fa-check"
+                                aria-hidden="true"></i></a>
+                    </td>
+                    <td (click)="log(operatie)">{{operatie.inschrijving}}</td>
+                </tr>
+            </ng-container>
+        </ng-container>
     </tbody>
 </table>
