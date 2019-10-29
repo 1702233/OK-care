@@ -15,7 +15,7 @@ export class OperatieService {
   }
 
   getIngeschreven(id : string) {
-    return this.firestore.collection('operaties').doc(id).collection('ingeschreven', ref => ref.where('status', '==', 'ingeschreven')).snapshotChanges();
+    return this.firestore.collection('operaties').doc(id).collection('ingeschreven').snapshotChanges();
   }
 
   acceptOperatieInschrijving(operatieid : string, zorgprofessionalid : string) {
