@@ -61,9 +61,11 @@ export class InschrijfAcceptanceComponent implements OnInit {
   }
 
   getIngeschreven(id: string) {
-    console.log('getIngeschreven functie')
-    console.log(this.inschrijflist)
+
+    //sla de laatst geklikte operatie ID op in een variable om deze te highlighten.
     this.laatsteOperatie = id;
+
+    //get inschrijvingen van een bepaalde operatie met operatie id en zet deze in this.inschrijflijst.
     this.service.getIngeschreven(id).subscribe(actionArray => {
       this.inschrijflist = actionArray.map(item => {
         return {
@@ -72,7 +74,7 @@ export class InschrijfAcceptanceComponent implements OnInit {
         }
       })
     });
-    console.log(this.inschrijflist)
+    //kijk of er verandering is in de reference
     this.ref.detectChanges()
   }
 
