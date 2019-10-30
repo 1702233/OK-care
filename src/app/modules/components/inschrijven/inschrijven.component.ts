@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Operatie } from 'src/app/shared/models/operatie.model';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -13,18 +13,24 @@ import { Inschrijving } from 'src/app/shared/models/inschrijving.model';
   templateUrl: './inschrijven.component.html',
   styleUrls: ['./inschrijven.component.css']
 })
-export class InschrijvenComponent implements OnInit {
+export class InschrijvenComponent implements OnInit, AfterViewInit {
 
   list: Operatie[];
   user: firebase.User;
+  ingeschrevenindex = [];
 
-  constructor(private auth: AuthService, 
+  constructor(private auth: AuthService,
     private router: Router,
     private service: OperatieService,
     private firestore: AngularFirestore,
     private toastr: ToastrService) { }
 
   ngOnInit() {
+    //authenticatie
+    this.auth.getUserState().subscribe(user => {
+      this.user = user;
+    });
+
     this.service.getOperaties().subscribe(actionArray => {
       this.list = actionArray.map(item => {
         return {
@@ -34,30 +40,60 @@ export class InschrijvenComponent implements OnInit {
       })
       for (let i in this.list) {
         let inschrijvingen;
+        try {
+          this.service.getIngeschreven(this.list[i].id).subscribe(actionArray => {
+            inschrijvingen = actionArray.map(item => {
+              return {
+                id: item.payload.doc.id,
+                ...item.payload.doc.data()
+              }
+            })
+            this.list[i].inschrijving = inschrijvingen;
+            let index;
+            for (let j in this.list[i].inschrijving) {
+              try {
+                console.log(" ")
+                console.log(this.list[i].inschrijving[j].id)
+                console.log(this.user.email)
+                console.log(" ")
+                if (this.list[i].inschrijving[j].id == this.user.email) {
 
-        this.service.getIngeschreven(this.list[i].id).subscribe(actionArray => {
-          inschrijvingen = actionArray.map(item => {
-            return {
-              id: item.payload.doc.id,  
-              ...item.payload.doc.data()
+                  index = this.list.indexOf(this.list[i], 0);
+                  this.ingeschrevenindex.push(index);
+                  console.log('verwijder operatie op index' + index);
+                  console.log(this.list)
+                  console.log(this.ingeschrevenindex);
+                  
+                }
+              } catch (error) {
+                console.log(error)
+              }
             }
-          })
-          // for (Inschrijving i in inschrijvingen) {
-          //   console.log()
-          // }
-          console.log(inschrijvingen.id + this.user.email)
-          this.list[i].inschrijving = inschrijvingen;
-          console.log(this.list[i])
-        });
-      }
-    });
 
-    //authenticatie
-    this.auth.getUserState().subscribe( user => {
-      this.user = user;
+
+          });
+        } catch (error) {
+          console.log("al ingeschreven voor deze operatie")
+        }
+      }
+
     });
   }
+  
+  ngAfterViewInit() {
+    this.filterIngeschrevenOperaties();
+  }
 
+  filterIngeschrevenOperaties() {
+    for (let i in this.ingeschrevenindex) {
+      this.list.splice(this.ingeschrevenindex[i], 1)
+      console.log(" ")
+      console.log(" ")
+      console.log(this.list);
+      console.log(" ")
+      console.log(" ")
+    }
+  }
   onInschrijven(id: string) {
     if (confirm('Weet je zeker dat je je voor deze operatie wilt inschrijven?')) {
       this.firestore.collection('operaties').doc(id).collection('ingeschreven').doc(this.user.email).set({
@@ -82,5 +118,6 @@ export class InschrijvenComponent implements OnInit {
       console.log(op)
       console.log(inschrijvingen);
     });
+    this.filterIngeschrevenOperaties();
   }
 }

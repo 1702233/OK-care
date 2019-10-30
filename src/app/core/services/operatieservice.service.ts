@@ -14,6 +14,10 @@ export class OperatieService {
     return this.firestore.collection('operaties').snapshotChanges();
   }
 
+  getingeschrevenOperaties(email: string) {
+    return this.firestore.collection('operaties', ref => ref.where('competenties/id', '==', email)).snapshotChanges();
+  }
+
   getIngeschreven(id : string) {
     return this.firestore.collection('operaties').doc(id).collection('ingeschreven').snapshotChanges();
   }
