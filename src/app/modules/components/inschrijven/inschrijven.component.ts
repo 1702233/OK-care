@@ -36,6 +36,7 @@ export class InschrijvenComponent implements OnInit {
   }
 
   loadOperaties() {
+    // alle operaties ophalen.
     this.service.getOperaties().subscribe(actionArray => {
       this.list = actionArray.map(item => {
         return {
@@ -43,6 +44,7 @@ export class InschrijvenComponent implements OnInit {
           ...item.payload.doc.data()
         } as Operatie;
       })
+      // for loop om alle inschrijvingen in operaties te stoppen in this.list
       for (let i in this.list) {
         let inschrijvingen;
         try {
@@ -54,11 +56,11 @@ export class InschrijvenComponent implements OnInit {
               }
             })
             this.list[i].inschrijving = inschrijvingen;
-            let index;
+            // filteren zodat als je al ingeschreven staat voor een operatie die uit this.list word gehaald
             for (let j in this.list[i].inschrijving) {
               try {
                 if (this.list[i].inschrijving[j].id == this.user.email) {
-
+                  let index;
                   index = this.list.indexOf(this.list[i], 0);
                   this.ingeschrevenindex.push(index);
                   
@@ -92,6 +94,7 @@ export class InschrijvenComponent implements OnInit {
 
   }
 
+  //log optie om de inschrijvingen te zien van 1 operatie.
   log(op: Operatie) {
     let inschrijvingen;
     this.service.getIngeschreven(op.id).subscribe(actionArray => {
