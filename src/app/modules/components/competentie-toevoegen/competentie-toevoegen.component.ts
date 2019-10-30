@@ -15,6 +15,7 @@ export class CompetentieToevoegenComponent implements OnInit {
   competentieLijst: Array<Competentie>;
   mijnUser: User;
   competentie: Competentie;
+  bericht: string;
 
 
   constructor(private auth: AuthService, private router: Router, private userService: UserService) { }
@@ -51,7 +52,22 @@ export class CompetentieToevoegenComponent implements OnInit {
   }
 
   addCompetentie() {
-    this.competentieLijst.push(this.competentie);
+    let isUnique = true;
+    for (const competentie of this.competentieLijst ) {
+      if (competentie.naam === this.competentie.naam && this.competentie !== null) {
+        isUnique = false;
+      }
+    }
+    if (isUnique === false) {
+      this.bericht = 'Naam moet uniek zijn!';
+    } else if (this.competentie.naam === '') {
+      this.bericht = 'Naam moet ingevuld zijn!';
+    } else if (this.competentie.file === '') {
+      this.bericht = 'File moet ingevuld zijn!';
+    }  else {
+      this.competentieLijst.push(this.competentie);
+      this.bericht = '';
+    }
   }
 
   verwijderCompetentie(index: number) {

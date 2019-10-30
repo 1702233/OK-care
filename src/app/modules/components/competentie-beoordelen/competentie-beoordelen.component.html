@@ -11,13 +11,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let competentie of competentieLijst; let i = index" [attr.data-index]="i">
+            <tr *ngFor="let competentie of beoordeeldLijst; let i = index" [attr.data-index]="i">
                 <td>{{ competentie.email }}</td>
                 <td>{{ competentie.naam }}</td>
                 <td>{{ competentie.file }}</td>
                 <td>{{ competentie.status }}</td>
-                <td> <button  class="btn btn-light" (click)="competentieAccepteren(i, user.email)">Accepteren</button> </td>
-                <td> <button  class="btn btn-light" (click)="competentieAfkeuren(i, user.email)">Afwijzen</button> </td>
+                <td> <button  class="btn btn-light" (click)="competentieAccepteren(i, competentie.email)">Accepteren</button> </td>
+                <td> <button  class="btn btn-light" (click)="competentieAfkeuren(i, competentie.email)">Afkeuren</button> </td>
             </tr>
         </tbody>
     </table>

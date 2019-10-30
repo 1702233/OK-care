@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { User } from '../../../shared/models/user.model';
 import { Competentie } from 'src/app/shared/models/competentie.model';
 
+
 @Component({
   selector: 'app-competentie-beoordelen',
   templateUrl: './competentie-beoordelen.component.html',
@@ -17,6 +18,7 @@ export class CompetentieBeoordelenComponent implements OnInit {
   beoordeeldLijst: Array<Competentie> = [];
   mijnUser: User;
   users: User[];
+  competentie: Competentie;
 
 
   constructor(private auth: AuthService, private router: Router, private userService: UserService) { }
@@ -32,13 +34,12 @@ export class CompetentieBeoordelenComponent implements OnInit {
       }
       this.userService.getUser(user.email).subscribe( mijnUser => {
         this.mijnUser = mijnUser as User;
-        this.getCompetentieLijst();
-        console.log(this.competentieLijst);
       });
     });
 
     this.userService.getUsers().subscribe(users => {
       this.users = users;
+      this.getCompetentieLijstBeoordeeld();
     });
 
   }
@@ -46,7 +47,6 @@ export class CompetentieBeoordelenComponent implements OnInit {
   getCompetentieLijst() {
     this.competentieLijst = [];
     for (const user of this.users ) {
-      console.log(user);
       if (user.competentie != null) {
         for (const competentie of user.competentie) {
           if (competentie.naam !== '' && competentie.file !== '' && competentie.email !== '') {
@@ -67,15 +67,41 @@ export class CompetentieBeoordelenComponent implements OnInit {
     }
   }
 
+  getCompetentieLijstBeoordeeld() {
+    this.competentie = null;
+    this.beoordeeldLijst = [];
+    this.getCompetentieLijst();
+    for (const competentie of this.competentieLijst) {
+      if (competentie.status === 'ingeschreven') {
+        this.beoordeeldLijst.push(competentie);
+      }
+    }
+
+  }
+
   competentieAccepteren(index: number, email: string) {
+    this.getCompetentieLijstBeoordeeld();
     this.getCompetentieLijstUser(email);
-    this.competentieLijstUser[index].status = 'Geaccepteerd';
+    this.competentie = this.beoordeeldLijst[index];
+    this.competentie.status = 'geaccepteerd';
+    this.beoordeeldLijst.splice(index, 1);
+    const i = this.competentieLijstUser.findIndex(competentie => competentie.naam === this.competentie.naam
+       && competentie.email === this.competentie.email);
+    this.competentieLijstUser.splice(i, 1);
+    this.competentieLijstUser.push(this.competentie);
     this.competentieToevoegen(email);
   }
 
   competentieAfkeuren(index: number, email: string) {
+    this.getCompetentieLijstBeoordeeld();
     this.getCompetentieLijstUser(email);
-    this.competentieLijstUser[index].status = 'Afgekeurd';
+    this.competentie = this.beoordeeldLijst[index];
+    this.competentie.status = 'afgekeurd';
+    this.beoordeeldLijst.splice(index, 1);
+    const i = this.competentieLijstUser.findIndex(competentie => competentie.naam === this.competentie.naam
+       && competentie.email === this.competentie.email);
+    this.competentieLijstUser.splice(i, 1);
+    this.competentieLijstUser.push(this.competentie);
     this.competentieToevoegen(email);
   }
 
