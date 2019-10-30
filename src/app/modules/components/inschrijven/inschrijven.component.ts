@@ -6,6 +6,7 @@ import { OperatieService } from '../../../core/services/operatieservice.service'
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { Inschrijving } from 'src/app/shared/models/inschrijving.model';
 
 @Component({
   selector: 'app-inschrijven',
@@ -32,16 +33,20 @@ export class InschrijvenComponent implements OnInit {
         } as Operatie;
       })
       for (let i in this.list) {
-        let inschrijving;
+        let inschrijvingen;
 
         this.service.getIngeschreven(this.list[i].id).subscribe(actionArray => {
-          inschrijving = actionArray.map(item => {
+          inschrijvingen = actionArray.map(item => {
             return {
               id: item.payload.doc.id,  
               ...item.payload.doc.data()
             }
           })
-          this.list[i].inschrijving = inschrijving;
+          // for (Inschrijving i in inschrijvingen) {
+          //   console.log()
+          // }
+          console.log(inschrijvingen.id + this.user.email)
+          this.list[i].inschrijving = inschrijvingen;
           console.log(this.list[i])
         });
       }
