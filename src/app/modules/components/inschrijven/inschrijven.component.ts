@@ -30,8 +30,8 @@ export class InschrijvenComponent implements OnInit {
     this.auth.getUserState().subscribe(user => {
       this.user = user;
     });
-
-
+    
+    //inladen van alle operaties ( met filter op al ingeschreven operaties op het eind)
     this.loadOperaties();
   }
 
