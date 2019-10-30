@@ -13,11 +13,11 @@ import { Inschrijving } from 'src/app/shared/models/inschrijving.model';
   templateUrl: './inschrijven.component.html',
   styleUrls: ['./inschrijven.component.css']
 })
-export class InschrijvenComponent implements OnInit, AfterViewInit {
+export class InschrijvenComponent implements OnInit {
 
   list: Operatie[];
   user: firebase.User;
-  ingeschrevenindex = [];
+  ingeschrevenindex: number[] = [];
 
   constructor(private auth: AuthService,
     private router: Router,
@@ -31,6 +31,11 @@ export class InschrijvenComponent implements OnInit, AfterViewInit {
       this.user = user;
     });
 
+
+    this.loadOperaties();
+  }
+
+  loadOperaties() {
     this.service.getOperaties().subscribe(actionArray => {
       this.list = actionArray.map(item => {
         return {
@@ -52,18 +57,13 @@ export class InschrijvenComponent implements OnInit, AfterViewInit {
             let index;
             for (let j in this.list[i].inschrijving) {
               try {
-                console.log(" ")
-                console.log(this.list[i].inschrijving[j].id)
-                console.log(this.user.email)
-                console.log(" ")
                 if (this.list[i].inschrijving[j].id == this.user.email) {
 
                   index = this.list.indexOf(this.list[i], 0);
                   this.ingeschrevenindex.push(index);
-                  console.log('verwijder operatie op index' + index);
-                  console.log(this.list)
-                  console.log(this.ingeschrevenindex);
                   
+                  delete this.list[index];
+
                 }
               } catch (error) {
                 console.log(error)
@@ -73,27 +73,13 @@ export class InschrijvenComponent implements OnInit, AfterViewInit {
 
           });
         } catch (error) {
-          console.log("al ingeschreven voor deze operatie")
+          console.log(error)
         }
       }
 
     });
   }
-  
-  ngAfterViewInit() {
-    this.filterIngeschrevenOperaties();
-  }
 
-  filterIngeschrevenOperaties() {
-    for (let i in this.ingeschrevenindex) {
-      this.list.splice(this.ingeschrevenindex[i], 1)
-      console.log(" ")
-      console.log(" ")
-      console.log(this.list);
-      console.log(" ")
-      console.log(" ")
-    }
-  }
   onInschrijven(id: string) {
     if (confirm('Weet je zeker dat je je voor deze operatie wilt inschrijven?')) {
       this.firestore.collection('operaties').doc(id).collection('ingeschreven').doc(this.user.email).set({
@@ -116,8 +102,6 @@ export class InschrijvenComponent implements OnInit, AfterViewInit {
         }
       })
       console.log(op)
-      console.log(inschrijvingen);
     });
-    this.filterIngeschrevenOperaties();
   }
 }
