@@ -17,7 +17,6 @@ export class MenuComponent implements OnInit {
     this.auth.getUserState().subscribe( user => {
       this.user = user;
       if(user != null){
-        console.log(user.email);
         this.getUserRole(user.email);
       }
     })

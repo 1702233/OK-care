@@ -27,6 +27,8 @@ import { OperatieLijstComponent } from './modules/components/operatie-lijst/oper
 import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-profiel.component';
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 import { ScheduleComponent } from './modules/components/schedule/schedule.component';
+import { CompetentieToevoegenComponent } from './modules/components/competentie-toevoegen/competentie-toevoegen.component';
+import { CompetentieBeoordelenComponent } from './modules/components/competentie-beoordelen/competentie-beoordelen.component';
 import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
 
 @NgModule({
@@ -42,6 +44,8 @@ import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acc
     MijnProfielComponent,
     InschrijvenComponent,
     ScheduleComponent,
+    CompetentieToevoegenComponent,
+    CompetentieBeoordelenComponent
     InschrijfAcceptanceComponent
   ],
   imports: [

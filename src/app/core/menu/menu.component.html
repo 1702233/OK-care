@@ -17,11 +17,18 @@
         <a class="nav-link" routerLink="/inschrijven" routerLinkActive="active">Inschrijven<span
             class="sr-only">(current)</span></a>
       </li>
-
+      <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
+          <a class="nav-link" routerLink="/competentieBeoordelen" routerLinkActive="active">Competentie Beoordelen<span
+              class="sr-only">(current)</span></a>
+        </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/mijnProfiel" routerLinkActive="active">Mijn Profiel<span
             class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item" *ngIf="user && registration?.role == 'zorgprofessional'">
+          <a class="nav-link" routerLink="/competentieToevoegen" routerLinkActive="active">Competentie Toevoegen<span
+              class="sr-only">(current)</span></a>
+        </li>
 
       <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
         <a class="nav-link" routerLink="/operatieacceptance" routerLinkActive="active">Accepteren Assistenten<span

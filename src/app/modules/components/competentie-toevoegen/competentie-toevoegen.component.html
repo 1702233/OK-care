@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+
+<div>
+    <div>
+        <form class="text-center">
+            <h1>Competentie Toevoegen</h1>
+            <div class="text-left ml-3">
+                <h5>{{bericht}}</h5>
+                <h5>Naam:</h5>
+                <input class="" type="text" #naam >
+                <h5>File:</h5>
+                <input class="" type="text" #file >
+                <button class="btn btn-secondary ml-2" (click)="getCompetentie(naam.value , file.value)" (click)="file.value = ''"
+                (click)="naam.value = ''" >Toevoegen</button>
+            </div>
+        </form>
+    </div>
+    <div class="mt-4">
+      <h3>Mijn Competenties:</h3>
+    </div>
+    <div class="mt-4">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Naam</th>
+                            <th scope="col">File</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let competentie of competentieLijst; let i = index" [attr.data-index]="i" >
+                            <td>{{ competentie.naam }}</td>
+                            <td>{{ competentie.file }}</td>
+                            <td>{{ competentie.status | titlecase }}</td>
+                            <td><a class="btn text-danger" (click)="verwijderCompetentie(i)" ><i class="fa fa-trash" ></i></a></td>
+                          </tr>
+                    </tbody>
+            </table>
+    </div>
+</div>

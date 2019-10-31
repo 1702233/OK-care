@@ -6,6 +6,7 @@ import { User } from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Registration } from '../../shared/models/registration.model';
+import { Competentie } from 'src/app/shared/models/competentie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,9 @@ export class AuthService {
       stad: this.newUser.stad,
       postcode: this.newUser.postcode,
       status: 'disabled',
+      competentie: [],
       straat: this.newUser.straat,
-      huisnummer: this.newUser.huisnummer
+      huisnummer: this.newUser.huisnummer,
     });
   }
 
