@@ -2,13 +2,15 @@
 
 <div class="row">
 
-    <div class="col-md-5">
-            <table class="table table-hover">
+    <div class="col-4">
+      <h1>Operaties</h1>
+            <table class="table table-hover table-responsive">
                     <thead>
                       <th>Type</th>
                       <th>Datum</th>
                       <th>Begintijd</th>
                       <th>Eindtijd</th>
+                      <th>Aantal Medewerkers</th>
                     </thead>
                     <tbody>
                       <tr *ngFor="let operatie of list" (click)="getIngeschreven(operatie.id)" [ngClass] = "{'highlight' : operatie.id == laatsteOperatie}">
@@ -16,13 +18,15 @@
                         <td>{{operatie.datum}}</td>
                         <td>{{operatie.begintijd}}</td>
                         <td>{{operatie.eindtijd}}</td>
+                        <td>{{operatie.aantalmedewerkers}}</td>
                       </tr>
                     </tbody>
                   </table>
     </div>
 
-    <div class="col-md-7">
-        <table class="table table-hover">
+    <div class="col-4">
+      <h1>Ingeschreven</h1>
+        <table class="table table-hover table-responsive">
             <thead>
                 <th>email</th>
                 <th>naam</th>
@@ -30,13 +34,36 @@
                 <th>afkeuren</th>
             </thead>
             <tbody>
-                <tr *ngFor="let zorgp of inschrijflist">
+              <ng-container *ngFor="let zorgp of inschrijflist">
+                <tr *ngIf="zorgp.status == 'ingeschreven'">
                     <td>{{zorgp.id}}</td>
                     <td>{{zorgp.displayName}}</td>
                     <td><a  class="btn" (click)="onAcceptInschrijven(zorgp.id)"><i class="fa fa-check" aria-hidden="true"></i></a></td>
                     <td><a  class="btn" (click)="onDenyInschrijven(zorgp.id)"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 
                 </tr>
+              </ng-container>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-4">
+      <h1>Personeel</h1>
+        <table class="table table-hover table-responsive">
+            <thead>
+                <th>email</th>
+                <th>naam</th>
+                <th>verwijderen</th>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let zorgp of inschrijflist">
+                <tr *ngIf="zorgp.status == 'goedgekeurd'">
+                    <td>{{zorgp.id}}</td>
+                    <td>{{zorgp.displayName}}</td>
+                    <td><a  class="btn" (click)="onDenyInschrijven(zorgp.id)"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+
+                </tr>
+              </ng-container>
             </tbody>
         </table>
     </div>

@@ -7,7 +7,7 @@
       <th></th>
     </thead>
     <tbody>
-      <tr *ngFor="let operatie of list">
+      <tr *ngFor="let operatie of list" [ngClass] = "{'highlight' : operatie.id == laatsteOperatie}">
         <td (click)="onEdit(operatie)">{{operatie.type}}</td>
         <td (click)="onEdit(operatie)">{{operatie.datum}}</td>
         <td (click)="onEdit(operatie)">{{operatie.begintijd}}</td>
