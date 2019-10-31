@@ -1,9 +1,10 @@
 <app-menu></app-menu>
-
+<button (click)="addCalendarEvents(user.email)">laden</button>
 <full-calendar
     #calendar
   defaultView="dayGridMonth"
   [plugins]="calendarPlugins"
   [weekends]="false"
   [events]="calendarEvents"
+  deepChangeDetection="true"
 ></full-calendar>

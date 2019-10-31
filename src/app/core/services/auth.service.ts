@@ -16,7 +16,7 @@ export class AuthService {
   newUser: any;
   private eventAuthError = new BehaviorSubject<string>('');
   eventAuthError$ = this.eventAuthError.asObservable();
-  registration : Observable<Registration>;
+  registration: Observable<Registration>;
 
   constructor(public  afAuth: AngularFireAuth, private db: AngularFirestore, public  router: Router) {
     this.afAuth.authState.subscribe(user => {
@@ -30,6 +30,8 @@ export class AuthService {
 
   }
 
+
+  // user data opslaan in de firebase
   insertUserData(userCredential: firebase.auth.UserCredential) {
     return this.db.doc(`Users/${this.newUser.email}`).set({
       email: this.newUser.email,
@@ -45,6 +47,7 @@ export class AuthService {
     });
   }
 
+  // User aanmaken in firebase met email en wachtwoord
   createUser(user) {
     this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then( userCredential => {
       this.newUser = user;
@@ -63,6 +66,7 @@ export class AuthService {
 
   }
 
+  // user inloggen als deze in de firebase staat
   login(email: string, password: string){
 
     this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(error => {
@@ -75,14 +79,17 @@ export class AuthService {
     });
   }
 
+  // user uitloggen
   logout() {
     return this.afAuth.auth.signOut();
   }
 
+  // user state ophalen
   getUserState() {
     return this.afAuth.authState;
   }
 
+  // kijken of de user geactiveerd is
   checkUserEnabled(email: string, password: string){
 
     // Als gebruikers status op "activated" staat dan login anders terug sturen naar homepagina.
@@ -111,10 +118,12 @@ export class AuthService {
     });
   }
 
+  // check of de user is ingelogd
   isLoggedIn(): boolean{
     return this.afAuth.authState !== null;
   }
 
+  // kijken naar de rol van de user voor zorgprofessional
   accessOnlyUser(email){
     this.db.collection("Users").doc(email).valueChanges().subscribe(val => {
       if(val['role'] != 'zorgprofessional'){
@@ -123,6 +132,7 @@ export class AuthService {
     });
   }
 
+  // kijken naar de rol van de user voor beheerder
   accessOnlyAdmin(email){
     this.db.collection("Users").doc(email).valueChanges().subscribe(val => {
       if(val['role'] != 'beheerder'){
@@ -131,7 +141,8 @@ export class AuthService {
     });
   }
 
-  checkUserRole(email){
+  // kijken naar de rol van de user
+  checkUserRole(email) {
     this.registration = this.db.collection("Users").doc(email).valueChanges();
     return this.registration;
   }

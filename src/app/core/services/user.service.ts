@@ -12,8 +12,8 @@ export class UserService {
   usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   userDoc: AngularFirestoreDocument<User>;
+  usersDisabled: Observable<User[]>;
   competentieDoc: AngularFirestoreDocument<User>;
-
 
   constructor(public afs: AngularFirestore) {
     this.usersCollection = afs.collection<User>('Users', ref => ref);
@@ -24,7 +24,7 @@ export class UserService {
         return {id, ...data};
       }))
     );
-
+    this.usersDisabled = this.afs.collection('Users', ref => ref.where('status', '==', 'disabled')).valueChanges();
   }
 
   getUser(email: string) {
@@ -33,6 +33,24 @@ export class UserService {
 
   getUsers() {
     return this.users;
+  }
+
+  getUsersDisabled() {
+    return this.usersDisabled;
+  }
+
+  userActiveren(email: string) {
+    this.userDoc = this.afs.doc(`Users/${email}`);
+    this.userDoc.update({
+      status: 'activated'
+    });
+  }
+
+  userAfkeuren(email: string) {
+    this.userDoc = this.afs.doc(`Users/${email}`);
+    this.userDoc.update({
+      status: 'dissaproved'
+    });
   }
 
   addCompetentie(email: string, com: Array<Competentie>) {

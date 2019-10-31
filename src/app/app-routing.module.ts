@@ -11,6 +11,7 @@ import { ScheduleComponent } from './modules/components/schedule/schedule.compon
 import { CompetentieToevoegenComponent } from './modules/components/competentie-toevoegen/competentie-toevoegen.component';
 import { CompetentieBeoordelenComponent } from './modules/components/competentie-beoordelen/competentie-beoordelen.component';
 import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
+import { ValidatieComponent } from './modules/components/validatie/validatie.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'agenda', component: ScheduleComponent},
   { path: 'competentiebeoordelen', component: CompetentieBeoordelenComponent},
   { path: 'competentietoevoegen', component: CompetentieToevoegenComponent},
-  
+  { path: 'schedule', component: ScheduleComponent},
+  { path: 'validatie', component: ValidatieComponent},
   {
     path: '**',
     redirectTo: 'login',

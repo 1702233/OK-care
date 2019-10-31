@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // user uitloggen en terug sturen naar login page
   logout() {
     this.auth.logout();
     this.router.navigate(['/login']);

@@ -19,11 +19,14 @@ export class MijnProfielComponent implements OnInit {
 
   ngOnInit() {
 
+    // Kijken of er iemand is ingelogd
     this.auth.getUserState().subscribe( user => {
       this.user = user;
       if (user == null) {
         this.router.navigate(['login']);
       }
+
+      // ingelogde user zijn gegevens ophalen en in mijnUser zetten
       this.userService.getUser(user.email).subscribe( mijnUser => {
         this.mijnUser = mijnUser as User;
         console.log(this.mijnUser.competentie);

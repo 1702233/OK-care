@@ -32,6 +32,7 @@ import { ScheduleComponent } from './modules/components/schedule/schedule.compon
 import { CompetentieToevoegenComponent } from './modules/components/competentie-toevoegen/competentie-toevoegen.component';
 import { CompetentieBeoordelenComponent } from './modules/components/competentie-beoordelen/competentie-beoordelen.component';
 import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
+import { ValidatieComponent } from './modules/components/validatie/validatie.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acc
     CompetentieToevoegenComponent,
     CompetentieBeoordelenComponent,
     InschrijfAcceptanceComponent,
+    ValidatieComponent
   ],
   imports: [
     BrowserModule,
