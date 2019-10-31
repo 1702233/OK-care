@@ -1,15 +1,15 @@
 <app-menu></app-menu>
 <div>
     <h5>{{ message }}</h5>
-    <table class="">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">E-mail</th>
                 <th scope="col">voornaam</th>
                 <th scope="col">Achternaam</th>
                 <th scope="col">Status</th>
-                <th></th>
-                <th></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -18,8 +18,12 @@
                 <td>{{ user.firstname | titlecase }}</td>
                 <td>{{ user.lastname | titlecase }}</td>
                 <td>{{ user.status | titlecase }}</td>
-                <button (click)="acceptRegistration(user.email)">Goedkeuren</button>
-                <button (click)="declineRegistration(user.email)">Afkeuren</button>
+                <td>
+                        <button (click)="acceptRegistration(user.email)" class="btn btn-light">Goedkeuren</button>
+                </td>
+                <td>
+                        <button (click)="declineRegistration(user.email)" class="btn btn-light">Afkeuren</button>
+                </td>
             </tr>
         </tbody>
     </table>
