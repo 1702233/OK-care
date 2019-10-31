@@ -11,8 +11,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-// sorting
-import { AgGridModule } from 'ag-grid-angular';
 // scheduler
 import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!;
 import { ScheduleModule, RecurrenceEditorModule, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService } from '@syncfusion/ej2-angular-schedule';
@@ -61,7 +59,6 @@ import { ValidatieComponent } from './modules/components/validatie/validatie.com
     AngularFireAuthModule,
     ToastrModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
-    AgGridModule.withComponents([]),
     BrowserAnimationsModule,
     ScheduleModule, RecurrenceEditorModule,
     FullCalendarModule, // for FullCalendar!
