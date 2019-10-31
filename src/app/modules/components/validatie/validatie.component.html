@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+<div>
+    <h5>{{ message }}</h5>
+    <table class="">
+        <thead>
+            <tr>
+                <th scope="col">E-mail</th>
+                <th scope="col">voornaam</th>
+                <th scope="col">Achternaam</th>
+                <th scope="col">Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of usersDisabled">
+                <td>{{ user.email | titlecase }}</td>
+                <td>{{ user.firstname | titlecase }}</td>
+                <td>{{ user.lastname | titlecase }}</td>
+                <td>{{ user.status | titlecase }}</td>
+                <button (click)="acceptRegistration(user.email)">Goedkeuren</button>
+                <button (click)="declineRegistration(user.email)">Afkeuren</button>
+            </tr>
+        </tbody>
+    </table>
+</div>

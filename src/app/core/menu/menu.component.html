@@ -13,20 +13,32 @@
         <a class="nav-link" routerLink="/operaties" routerLinkActive="active">Operaties<span
             class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/inschrijven" routerLinkActive="active">Inschrijven<span
+      <li class="nav-item" *ngIf="user && registration?.role == 'zorgprofessional'">
+        <a class="nav-link" routerLink="/operatieinschrijven" routerLinkActive="active">Inschrijven<span
             class="sr-only">(current)</span></a>
       </li>
-
+      <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
+          <a class="nav-link" routerLink="/competentiebeoordelen" routerLinkActive="active">Competentie Beoordelen<span
+              class="sr-only">(current)</span></a>
+        </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/mijnProfiel" routerLinkActive="active">Mijn Profiel<span
+        <a class="nav-link" routerLink="/mijnprofiel" routerLinkActive="active">Mijn Profiel<span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="user && registration?.role == 'zorgprofessional'">
+          <a class="nav-link" routerLink="/competentietoevoegen" routerLinkActive="active">Competentie Toevoegen<span
+              class="sr-only">(current)</span></a>
+        </li>
+
+      <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
+        <a class="nav-link" routerLink="/operatieacceptatie" routerLinkActive="active">Accepteren Assistenten<span
             class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
-        <a class="nav-link" routerLink="/operatieacceptance" routerLinkActive="active">Accepteren Assistenten<span
-            class="sr-only">(current)</span></a>
-      </li>
+          <a class="nav-link" routerLink="/validatie" routerLinkActive="active">Account Activeren<span
+              class="sr-only">(current)</span></a>
+        </li>
 
       <li class="nav-item">
         <a class="nav-link" (click)="logout()" href="" routerLinkActive="active">Log uit<span

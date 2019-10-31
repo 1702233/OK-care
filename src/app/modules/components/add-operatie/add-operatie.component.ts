@@ -60,6 +60,7 @@ export class AddOperatieComponent implements OnInit {
       begintijd: '14:00',
       eindtijd: '15:00',
       competenties: [],
+      inschrijving: '',
     }
   }
 
@@ -74,5 +75,4 @@ export class AddOperatieComponent implements OnInit {
     this.resetForm(form);
     this.toastr.success('Submitted successfully', 'Operatie');
   }
-
 }

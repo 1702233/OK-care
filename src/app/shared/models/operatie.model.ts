@@ -1,3 +1,5 @@
+import { Inschrijving } from './inschrijving.model';
+
 export class Operatie {
     id: string;
     type: string;
@@ -6,4 +8,5 @@ export class Operatie {
     begintijd: string;
     eindtijd: string;
     competenties: Array<Object>;
+    inschrijving: Inschrijving;
 }

@@ -22,14 +22,14 @@ export class InschrijfAcceptanceComponent implements OnInit {
 
   constructor(private service: OperatieService,
     private firestore: AngularFirestore,
-    private toastr:ToastrService,
+    private toastr: ToastrService,
     private auth: AuthService,
     private router: Router,
     private ref: ChangeDetectorRef) { }
-    
+
 
   ngOnInit() {
-    this.auth.getUserState().subscribe( user => {
+    this.auth.getUserState().subscribe(user => {
       this.user = user;
       if (user == null) {
         this.router.navigate(['login']);
@@ -46,24 +46,27 @@ export class InschrijfAcceptanceComponent implements OnInit {
           ...item.payload.doc.data()
         } as Operatie;
       })
+      this.list.sort(this.dynamicSort('datum'))
     });
   }
 
-  onEdit(operatie : Operatie) {
+  onEdit(operatie: Operatie) {
     this.service.formData = Object.assign({}, operatie);
   }
 
   onDelete(id: string) {
     if (confirm("Are you sure to delete this record?")) {
       this.firestore.doc('operaties/' + id).delete();
-      this.toastr.warning('Deleted successfully','Operatie');
+      this.toastr.warning('Deleted successfully', 'Operatie');
     }
   }
 
   getIngeschreven(id: string) {
-    console.log('getIngeschreven functie')
-    console.log(this.inschrijflist)
+
+    //sla de laatst geklikte operatie ID op in een variable om deze te highlighten.
     this.laatsteOperatie = id;
+
+    //get inschrijvingen van een bepaalde operatie met operatie id en zet deze in this.inschrijflijst.
     this.service.getIngeschreven(id).subscribe(actionArray => {
       this.inschrijflist = actionArray.map(item => {
         return {
@@ -72,16 +75,28 @@ export class InschrijfAcceptanceComponent implements OnInit {
         }
       })
     });
-    console.log(this.inschrijflist)
+    //kijk of er verandering is in de reference
     this.ref.detectChanges()
   }
 
-  onAcceptInschrijven(id : string) {
+  onAcceptInschrijven(id: string) {
     this.service.acceptOperatieInschrijving(this.laatsteOperatie, id);
   }
 
-  onDenyInschrijven(id : string ) {
+  onDenyInschrijven(id: string) {
     this.service.denyOperatieInschrijving(this.laatsteOperatie, id);
+  }
+
+  dynamicSort(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+    return function (a, b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
+    }
   }
 
 }

@@ -16,6 +16,7 @@ export class OperatieLijstComponent implements OnInit {
 
   user: firebase.User;
   list: Operatie[];
+  laatsteOperatie;
 
   constructor(private service: OperatieService,
     private firestore: AngularFirestore,
@@ -25,6 +26,7 @@ export class OperatieLijstComponent implements OnInit {
     
 
   ngOnInit() {
+    //authenticatie
     this.auth.getUserState().subscribe( user => {
       this.user = user;
       if (user == null) {
@@ -34,7 +36,8 @@ export class OperatieLijstComponent implements OnInit {
         this.auth.accessOnlyAdmin(user.email);
       }
     });
-
+    
+    //get alle operaties
     this.service.getOperaties().subscribe(actionArray => {
       this.list = actionArray.map(item => {
         return {
@@ -42,17 +45,35 @@ export class OperatieLijstComponent implements OnInit {
           ...item.payload.doc.data()
         } as Operatie;
       })
+      // sort de tabel op datum.
+      this.list.sort(this.dynamicSort('datum'));
     });
   }
 
+  // als een operatie wordt geselecteerd vul de form met deze data.
   onEdit(operatie : Operatie) {
     this.service.formData = Object.assign({}, operatie);
+    //sla de laatst geklikte operatie ID op in een variable om deze te highlighten.
+    this.laatsteOperatie = operatie.id;
   }
 
+  // als delete functie wordt aangeroepen verwijder operatie met dit id.
   onDelete(id: string) {
     if (confirm("Are you sure to delete this record?")) {
       this.firestore.doc('operaties/' + id).delete();
       this.toastr.warning('Deleted successfully','Operatie');
+    }
+  }
+
+  dynamicSort(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+    return function (a, b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
     }
   }
 
