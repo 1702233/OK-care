@@ -15,7 +15,7 @@ export class AuthService {
   newUser: any;
   private eventAuthError = new BehaviorSubject<string>('');
   eventAuthError$ = this.eventAuthError.asObservable();
-  registration : Observable<Registration>;
+  registration: Observable<Registration>;
 
   constructor(public  afAuth: AngularFireAuth, private db: AngularFirestore, public  router: Router) {
     this.afAuth.authState.subscribe(user => {
@@ -140,7 +140,7 @@ export class AuthService {
   }
 
   // kijken naar de rol van de user
-  checkUserRole(email){
+  checkUserRole(email) {
     this.registration = this.db.collection("Users").doc(email).valueChanges();
     return this.registration;
   }

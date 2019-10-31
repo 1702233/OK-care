@@ -28,6 +28,7 @@ import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-pro
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 import { ScheduleComponent } from './modules/components/schedule/schedule.component';
 import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
+import { ValidatieComponent } from './modules/components/validatie/validatie.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acc
     MijnProfielComponent,
     InschrijvenComponent,
     ScheduleComponent,
-    InschrijfAcceptanceComponent
+    InschrijfAcceptanceComponent,
+    ValidatieComponent
   ],
   imports: [
     BrowserModule,

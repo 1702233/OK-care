@@ -9,6 +9,7 @@ import { MijnProfielComponent } from './modules/components/mijn-profiel/mijn-pro
 import { InschrijvenComponent } from './modules/components/inschrijven/inschrijven.component';
 import { ScheduleComponent } from './modules/components/schedule/schedule.component';
 import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acceptance/inschrijf-acceptance.component';
+import { ValidatieComponent } from './modules/components/validatie/validatie.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'inschrijven', component: InschrijvenComponent},
   { path: 'schedule', component: ScheduleComponent},
   { path: 'operatieacceptance', component: InschrijfAcceptanceComponent},
+  { path: 'validatie', component: ValidatieComponent},
   {
     path: '**',
     redirectTo: 'login',
