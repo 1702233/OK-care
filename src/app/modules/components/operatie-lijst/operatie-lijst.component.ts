@@ -45,6 +45,8 @@ export class OperatieLijstComponent implements OnInit {
           ...item.payload.doc.data()
         } as Operatie;
       })
+      // sort de tabel op datum.
+      this.list.sort(this.dynamicSort('datum'));
     });
   }
 
@@ -60,6 +62,18 @@ export class OperatieLijstComponent implements OnInit {
     if (confirm("Are you sure to delete this record?")) {
       this.firestore.doc('operaties/' + id).delete();
       this.toastr.warning('Deleted successfully','Operatie');
+    }
+  }
+
+  dynamicSort(property) {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+    }
+    return function (a, b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
     }
   }
 
