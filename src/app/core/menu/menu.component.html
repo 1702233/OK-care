@@ -28,6 +28,11 @@
             class="sr-only">(current)</span></a>
       </li>
 
+      <li class="nav-item" *ngIf="user && registration?.role == 'beheerder'">
+          <a class="nav-link" routerLink="/validatie" routerLinkActive="active">Account Activeren<span
+              class="sr-only">(current)</span></a>
+        </li>
+
       <li class="nav-item">
         <a class="nav-link" (click)="logout()" href="" routerLinkActive="active">Log uit<span
             class="sr-only">(current)</span></a>

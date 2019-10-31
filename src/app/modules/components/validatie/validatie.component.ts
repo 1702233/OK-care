@@ -15,6 +15,7 @@ export class ValidatieComponent implements OnInit {
   user: firebase.User;
   registrationValidation: User;
   message: string;
+  usersDisabled: User[];
 
   constructor(private userService: UserService, private auth: AuthService, private router: Router) { }
 
@@ -34,19 +35,23 @@ export class ValidatieComponent implements OnInit {
     this.userService.getUsers().subscribe(users => {
       this.users = users;
     });
+
+    this.userService.getUsersDisabled().subscribe(users => {
+      this.usersDisabled = users;
+    })
+
+
   }
 
   // user status op activated zetten
   acceptRegistration(email: string) {
-    console.log('jjaaaa')
     this.userService.userActiveren(email);
     this.message = 'User geactiveerd';
   }
 
   // user status op disaproved zetten
   declineRegistration(email: string) {
-    console.log('nee')
-    this.userService.userActiveren(email);
+    this.userService.userAfkeuren(email);
     this.message = 'User afgekeurd';
   }
 

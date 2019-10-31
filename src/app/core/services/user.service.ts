@@ -34,6 +34,10 @@ export class UserService {
     return this.users;
   }
 
+  getUsersDisabled() {
+    return this.usersDisabled;
+  }
+
   userActiveren(email: string) {
     this.userDoc = this.afs.doc(`Users/${email}`);
     this.userDoc.update({
