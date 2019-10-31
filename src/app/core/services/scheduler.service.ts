@@ -16,6 +16,7 @@ export class SchedulerService {
   inschrijvingDoc: AngularFirestoreDocument<Inschrijving>;
   inschrijvingen: Observable<Inschrijving[]>;
 
+  // operaties ophalen en met id opslaan
   constructor(public afs: AngularFirestore) {
     this.operatiesCollection = afs.collection<Operatie>('operaties', ref => ref);
     this.operaties = this.operatiesCollection.snapshotChanges().pipe(
@@ -27,15 +28,17 @@ export class SchedulerService {
     );
    }
 
-
+   // alle operaties returnen
    getOperaties() {
      return this.operaties;
    }
 
+   // operatie met bepaald id ophalen
    getOperatieByID(id: string) {
      return this.afs.collection('opearties').doc(id).valueChanges();
    }
 
+   // inschrijvingen die bij operatie horen ophalen
    getInschrijving(operatie: Operatie) {
     this.inschrijvingCollection = this.afs.collection<Inschrijving>(`operaties/${operatie.id}/ingeschreven`, ref => ref);
     this.inschrijvingen = this.inschrijvingCollection.snapshotChanges().pipe(

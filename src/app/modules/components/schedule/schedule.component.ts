@@ -31,7 +31,7 @@ export class ScheduleComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private schedulerService: SchedulerService) {}
 
   ngOnInit(): void {
-
+    // check of dat de user is ingelogd
     this.auth.getUserState().subscribe( user => {
       this.user = user;
       if (user == null) {
@@ -39,6 +39,7 @@ export class ScheduleComponent implements OnInit {
       }
     });
 
+    // lijst ophalen van operaties en methods runnen
     this.schedulerService.getOperaties().subscribe(operaties => {
       this.operaties = operaties;
       this.getInschrijvingen();
@@ -48,6 +49,7 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
+  //alle inschrijvingen in een lijst stoppen
   getInschrijvingen() {
     this.inschrijvingLijst = [];
     for (const operatie of this.operaties) {
@@ -63,6 +65,8 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
+  // alle inschrijvingen van de user ophalen en in een lijst stoppen
+  // alleen de inschrijvingen die goedgekeurd zijn worden opgehaald
   getInschrijvingenUser(email: string) {
     this.inschrijvingLijstUser = [];
     for (const inschrijving of this.inschrijvingLijst) {
@@ -72,12 +76,14 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
+  //ophalen van de operatie die bij de inschrijving van de user hoort
   getOperatieUser(id: string) {
     this.schedulerService.getOperatieByID(id).subscribe(operatie => {
       this.operatieUser = operatie as Operatie;
     });
   }
 
+  // alle operaties binnen halen waarvoor de user zich heeft ingeschreven
   getOperatiesUser(email: string) {
     this.operatiesUser = [];
     this.getInschrijvingenUser(email);
@@ -90,6 +96,8 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
+  // operaties waarvoor de user zich heeft ingeschreven in een lijst zetten en vervolgens deze lijst
+  // in de agenda te zetten
   addCalendarEvents(email: string) {
     this.getOperatiesUser(email);
     this.calendarEvents = [];

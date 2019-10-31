@@ -12,13 +12,14 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    // errors tijdens het inloggen opvangen
     this.auth.eventAuthError$.subscribe( data => {
       this.authError = '';
       this.authError = data;
     });
   }
 
-
+  // User in loggen
   login(frm) {
     this.auth.checkUserEnabled(frm.value.email, frm.value.password);
     this.authError = '';
