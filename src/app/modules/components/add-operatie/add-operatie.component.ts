@@ -75,5 +75,4 @@ export class AddOperatieComponent implements OnInit {
     this.resetForm(form);
     this.toastr.success('Submitted successfully', 'Operatie');
   }
-
 }
