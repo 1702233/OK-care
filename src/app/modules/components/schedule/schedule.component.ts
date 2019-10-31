@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { EventInput } from '@fullcalendar/core';
+import { EventInput, Calendar } from '@fullcalendar/core';
 import { SchedulerService } from 'src/app/core/services/scheduler.service';
 import { Operatie } from 'src/app/shared/models/operatie.model';
 import { Inschrijving } from 'src/app/shared/models/ingeschreven.model';
@@ -16,6 +16,7 @@ import { User } from '../../../shared/models/user.model';
 export class ScheduleComponent implements OnInit {
   calendarPlugins = [dayGridPlugin]; // important!
   calendarEvents: EventInput[] = [];
+  calendarEvent: EventInput;
   operaties: Operatie[];
   operatiesUser: Operatie[] = [];
   operatie: Operatie;
@@ -30,7 +31,6 @@ export class ScheduleComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private schedulerService: SchedulerService) {}
 
   ngOnInit(): void {
-    this.calendarEvents.push({ title: 'test', start: '2019-10-10'});
 
     this.auth.getUserState().subscribe( user => {
       this.user = user;
@@ -43,8 +43,9 @@ export class ScheduleComponent implements OnInit {
       this.operaties = operaties;
       this.getInschrijvingen();
       this.getOperatiesUser(this.user.email);
+      this.addCalendarEvents(this.user.email);
+      console.log(this.calendarEvents);
     });
-
   }
 
   getInschrijvingen() {
@@ -56,8 +57,6 @@ export class ScheduleComponent implements OnInit {
 
         for (const inschrijving of this.inschrijvingen) {
           inschrijving.operatieNaam = this.operatieNaam;
-          console.log(inschrijving);
-          console.log(this.operatieNaam);
           this.inschrijvingLijst.push(inschrijving);
         }
       });
@@ -71,7 +70,6 @@ export class ScheduleComponent implements OnInit {
         this.inschrijvingLijstUser.push(inschrijving);
       }
     }
-    console.log(this.inschrijvingLijstUser);
   }
 
   getOperatieUser(id: string) {
@@ -81,11 +79,23 @@ export class ScheduleComponent implements OnInit {
   }
 
   getOperatiesUser(email: string) {
+    this.operatiesUser = [];
     this.getInschrijvingenUser(email);
-    console.log(this.inschrijvingLijstUser);
     for (const operatie of this.operaties) {
-      this.operatie = operatie;
-    
+      for (const inschrijving of this.inschrijvingLijstUser) {
+        if (operatie.id === inschrijving.operatieNaam) {
+          this.operatiesUser.push(operatie);
+        }
+      }
+    }
+  }
+
+  addCalendarEvents(email: string) {
+    this.getOperatiesUser(email);
+    this.calendarEvents = [];
+    for (const operatie of this.operatiesUser) {
+      this.calendarEvent = { title: `${operatie.type} ${operatie.begintijd}-${operatie.eindtijd}`, start: operatie.datum};
+      this.calendarEvents.push(this.calendarEvent);
     }
   }
 
