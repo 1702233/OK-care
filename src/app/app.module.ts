@@ -45,8 +45,8 @@ import { InschrijfAcceptanceComponent } from './modules/components/inschrijf-acc
     InschrijvenComponent,
     ScheduleComponent,
     CompetentieToevoegenComponent,
-    CompetentieBeoordelenComponent
-    InschrijfAcceptanceComponent
+    CompetentieBeoordelenComponent,
+    InschrijfAcceptanceComponent,
   ],
   imports: [
     BrowserModule,
